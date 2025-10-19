@@ -1,0 +1,266 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>禁止访问 - 404错误</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Arial', sans-serif;
+        }
+        
+        body {
+            background: linear-gradient(135deg, #1a1a1a 0%, #2d1a1a 100%);
+            color: #fff;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+            text-align: center;
+            overflow-x: hidden;
+        }
+        
+        .container {
+            max-width: 800px;
+            padding: 40px;
+            background: rgba(0, 0, 0, 0.7);
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(255, 0, 0, 0.2);
+            border: 1px solid rgba(255, 0, 0, 0.3);
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .container::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle, rgba(255, 0, 0, 0.1) 0%, transparent 70%);
+            z-index: -1;
+            animation: pulse 8s infinite linear;
+        }
+        
+        @keyframes pulse {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+        
+        .error-code {
+            font-size: 120px;
+            font-weight: bold;
+            color: #ff3333;
+            text-shadow: 0 0 20px rgba(255, 0, 0, 0.5);
+            margin-bottom: 20px;
+            line-height: 1;
+        }
+        
+        .warning-icon {
+            font-size: 80px;
+            margin-bottom: 30px;
+            animation: shake 2s infinite;
+            color: #ff3333;
+        }
+        
+        @keyframes shake {
+            0%, 100% { transform: translateX(0); }
+            10%, 30%, 50%, 70%, 90% { transform: translateX(-5px); }
+            20%, 40%, 60%, 80% { transform: translateX(5px); }
+        }
+        
+        h1 {
+            font-size: 36px;
+            margin-bottom: 20px;
+            color: #ff6666;
+            text-shadow: 0 0 10px rgba(255, 0, 0, 0.3);
+        }
+        
+        .message {
+            font-size: 20px;
+            line-height: 1.6;
+            margin-bottom: 30px;
+            color: #e6e6e6;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+        
+        .warning-text {
+            background: rgba(255, 0, 0, 0.2);
+            border-left: 4px solid #ff3333;
+            padding: 15px;
+            margin: 25px 0;
+            border-radius: 0 8px 8px 0;
+            text-align: left;
+        }
+        
+        .actions {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 15px;
+            margin-top: 30px;
+        }
+        
+        .btn {
+            padding: 12px 25px;
+            background: #ff3333;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            font-size: 16px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-decoration: none;
+            display: inline-block;
+        }
+        
+        .btn:hover {
+            background: #ff5555;
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(255, 0, 0, 0.4);
+        }
+        
+        .btn-secondary {
+            background: transparent;
+            border: 1px solid #ff3333;
+        }
+        
+        .btn-secondary:hover {
+            background: rgba(255, 0, 0, 0.1);
+        }
+        
+        .lock-animation {
+            width: 100px;
+            height: 100px;
+            margin: 0 auto 30px;
+            position: relative;
+        }
+        
+        .lock-body {
+            width: 80px;
+            height: 60px;
+            background: #ff3333;
+            border-radius: 10px;
+            position: absolute;
+            top: 20px;
+            left: 10px;
+        }
+        
+        .lock-hole {
+            width: 20px;
+            height: 20px;
+            background: #1a1a1a;
+            border-radius: 50%;
+            position: absolute;
+            top: 20px;
+            left: 30px;
+        }
+        
+        .lock-handle {
+            width: 40px;
+            height: 25px;
+            border: 8px solid #ff3333;
+            border-top: none;
+            border-radius: 0 0 20px 20px;
+            position: absolute;
+            top: 0;
+            left: 20px;
+            transform-origin: top center;
+            animation: lock 3s infinite;
+        }
+        
+        @keyframes lock {
+            0%, 100% { transform: rotate(0deg); }
+            50% { transform: rotate(10deg); }
+        }
+        
+        .security-tip {
+            margin-top: 30px;
+            padding: 15px;
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 8px;
+            font-size: 14px;
+            color: #cccccc;
+        }
+        
+        @media (max-width: 600px) {
+            .error-code {
+                font-size: 80px;
+            }
+            
+            h1 {
+                font-size: 28px;
+            }
+            
+            .message {
+                font-size: 18px;
+            }
+            
+            .container {
+                padding: 25px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="error-code">404</div>
+        
+        <div class="lock-animation">
+            <div class="lock-handle"></div>
+            <div class="lock-body">
+                <div class="lock-hole"></div>
+            </div>
+        </div>
+        
+        <h1>禁止通过根目录打开！</h1>
+        
+        <div class="message">
+            您试图通过根目录访问此资源，但这是被禁止的操作。
+            请通过正确的路径访问网站内容，或联系网站管理员获取帮助。
+        </div>
+        
+        <div class="warning-text">
+            <strong>安全提醒：</strong> 直接通过根目录访问资源可能暴露敏感信息，已被系统阻止。
+        </div>
+        
+        <div class="actions">
+            <a href="/" class="btn">返回首页</a>
+            <a href="#" class="btn btn-secondary" onclick="window.location.reload()">刷新页面</a>
+            <a href="mailto:admin@example.com" class="btn btn-secondary">联系管理员</a>
+        </div>
+        
+        <div class="security-tip">
+            <strong>提示：</strong> 如果您认为这是一个错误，请检查您输入的URL是否正确，或联系技术支持。
+        </div>
+    </div>
+    
+    <script>
+        // 添加一些动态效果
+        document.addEventListener('DOMContentLoaded', function() {
+            const container = document.querySelector('.container');
+            
+            // 鼠标移动效果
+            document.addEventListener('mousemove', function(e) {
+                const x = e.clientX / window.innerWidth;
+                const y = e.clientY / window.innerHeight;
+                
+                container.style.transform = `perspective(1000px) rotateY(${x * 5 - 2.5}deg) rotateX(${y * -5 + 2.5}deg)`;
+            });
+            
+            // 鼠标离开时恢复
+            document.addEventListener('mouseleave', function() {
+                container.style.transform = 'perspective(1000px) rotateY(0deg) rotateX(0deg)';
+            });
+        });
+    </script>
+</body>
+</html>
